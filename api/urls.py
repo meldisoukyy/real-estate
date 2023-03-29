@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
 path('contact_form/', views.ContactFormView.as_view(), name='contact_form'),
+path('join_form/', views.JoinUsFormView.as_view(), name='join_form'),
 ]

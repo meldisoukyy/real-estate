@@ -1,8 +1,13 @@
 from rest_framework import serializers
-from .models import ContactForm
+from .models import ContactForm,JoinUsForm
 
 
 class ContactFormSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContactForm
+        fields = "__all__"
+
+class JoinUsFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JoinUsForm
         fields = "__all__"

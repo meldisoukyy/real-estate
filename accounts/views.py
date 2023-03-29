@@ -23,7 +23,6 @@ class LoginView(APIView):
         national_id = request.data.get('national_id')
         password = request.data.get('password')
         user = User.objects.filter(national_id=national_id).first()
-        print(national_id)
         if user is None:
             return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
         if not user.check_password(password):
