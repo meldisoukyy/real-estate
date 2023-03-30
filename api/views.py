@@ -3,7 +3,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
-from .serializers import ContactFormSerializer, JoinUsFormSerializer
+from rest_framework.authtoken.models import Token
+from .serializers import ContactFormSerializer, JoinUsFormSerializer, BuildingSerializer
+from accounts.models import User
 
 
 # Create your views here.
@@ -25,6 +27,12 @@ class JoinUsFormView(APIView):
 
 class AddEstateView(APIView):
     permission_classes = (IsAuthenticated,)
-    def get(self, request):
-        content = {'message': 'Authorized'}
-        return Response(content)
+
+    def post(self, request):
+        data = request.data.copy()
+        data['user'] = request.user.id
+        serializer = BuildingSerializer(data=data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+        return Response({'status': 'success'}, status=status.HTTP_201_CREATED)
+
