@@ -11,3 +11,8 @@ class JoinUsFormSerializer(serializers.ModelSerializer):
     class Meta:
         model = JoinUsForm
         fields = "__all__"
+
+# class BuildingSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Building
+#         fields = "__all__"

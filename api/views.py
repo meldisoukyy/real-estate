@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import ContactFormSerializer, JoinUsFormSerializer
 
-
 # Create your views here.
 class ContactFormView(APIView):
     def post(self, request):
@@ -20,3 +19,11 @@ class JoinUsFormView(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
         return Response({'status': 'success'}, status=status.HTTP_201_CREATED)
+
+
+# class BuildingView(APIView):
+#     def post(self, request):
+#         serializer = BuildingSerializer(data=request.data)
+#         if serializer.is_valid(raise_exception=True):
+#             serializer.save()
+#         return Response({'status': 'success'}, status=status.HTTP_201_CREATED)
