@@ -2,7 +2,9 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 from .serializers import ContactFormSerializer, JoinUsFormSerializer
+
 
 # Create your views here.
 class ContactFormView(APIView):
@@ -21,9 +23,8 @@ class JoinUsFormView(APIView):
         return Response({'status': 'success'}, status=status.HTTP_201_CREATED)
 
 
-# class BuildingView(APIView):
-#     def post(self, request):
-#         serializer = BuildingSerializer(data=request.data)
-#         if serializer.is_valid(raise_exception=True):
-#             serializer.save()
-#         return Response({'status': 'success'}, status=status.HTTP_201_CREATED)
+class AddEstateView(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        content = {'message': 'Authorized'}
+        return Response(content)
