@@ -29,10 +29,8 @@ class JoinUsFormView(APIView):
 
 class AddEstateView(APIView):
     permission_classes = (IsAuthenticated,)
-
     def post(self, request):
         data = request.data.copy()
-        print(data)
         data['user'] = request.user.id
         serializer = BuildingSerializer(data=data)
         if serializer.is_valid(raise_exception=True):
