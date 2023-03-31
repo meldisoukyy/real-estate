@@ -33,14 +33,6 @@ class JoinUsForm(models.Model):
         return self.name
 
 
-# BUILDING_USAGE = (('1','1'),)
-# OFFERS = (('1', '1'),)
-# PAYMENT_METHODS = (('1', '1'),)
-# REGIONS = (('1', '1'),)
-# CITIES = (('1', '1'),)
-# NEIGHBORHOODS = (('1', '1'),)
-#
-
 class Building(models.Model):
     class BuildingTypes(models.TextChoices):
         WORKERS_HOUSE = '1', 'Workers_houses'
@@ -79,19 +71,19 @@ class Building(models.Model):
 
     class Neighborhood(models.TextChoices):
         ALMOHAMMADIAH = '1', 'المحمدية'
-        ALKAHFYA = '2','الكهيفية'
+        ALKAHFYA = '2', 'الكهيفية'
         RAYAN = '3', 'الريان'
         NAHDA = '4', 'النهضة'
         BAREDA = '5', 'بريدة'
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    building_type = models.CharField(max_length=100, choices=BuildingTypes.choices, blank=False)
+    building_type = models.CharField(max_length=100,blank=False)
     building_age = models.FloatField(blank=True, null=True)
     building_area = models.FloatField(blank=True, null=True)
     key_place = models.CharField(max_length=256, blank=True, null=True)
-    building_category = models.CharField(max_length=100, choices=BuildingCategory.choices, blank=False)
-    building_usage = models.CharField(max_length=100, choices=BuildingUsage.choices, blank=False)
-    offer = models.CharField(max_length=100, choices=Offer.choices, blank=False)
+    building_category = models.CharField(max_length=100, blank=False)
+    building_usage = models.CharField(max_length=100, blank=False)
+    offer = models.CharField(max_length=100, blank=False)
     price = models.FloatField(blank=True, null=True)
     soom_price = models.FloatField(blank=True, null=True)
     payment_method = models.CharField(max_length=100, blank=True, null=True)
@@ -125,9 +117,9 @@ class Building(models.Model):
     pieces = models.IntegerField(blank=True, null=True)
     piece_number = models.IntegerField(blank=True, null=True)
     design_number = models.IntegerField(blank=True, null=True)  # رقم المخطط
-    region = models.CharField(max_length=100, choices=Region.choices, blank=False)
-    city = models.CharField(max_length=100, choices=City.choices, blank=False)
-    neighborhood = models.CharField(max_length=100, choices=Neighborhood.choices, blank=False)
+    region = models.CharField(max_length=100,  blank=False)
+    city = models.CharField(max_length=100, blank=True, null=True)
+    neighborhood = models.CharField(max_length=100,  blank=True, null=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
 
@@ -142,3 +134,5 @@ class Building(models.Model):
 class BuildingImage(models.Model):
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='building_images/')
+
+# class Rate Building
