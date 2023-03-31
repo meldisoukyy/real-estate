@@ -5,4 +5,6 @@ urlpatterns = [
     path('contact_form', views.ContactFormView.as_view(), name='contact_form'),
     path('join_form', views.JoinUsFormView.as_view(), name='join_form'),
     path('add_estate', views.AddEstateView.as_view(), name='add_estate'),
+    path('get_estates', views.GetAllEstatesView.as_view(), name='get_estates'),
+    path('get_estate/<int:pk>', views.GetEstateView.as_view(), name='get_estate'),
 ]
