@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from rest_framework.schemas import get_schema_view
+from rest_framework.documentation import include_docs_urls
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('api/', include('api.urls')),
+    path('docs/', include_docs_urls(title="RealEstate API", description="API for RealEstate App")),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
 ]

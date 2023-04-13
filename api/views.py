@@ -1,12 +1,8 @@
-from django.shortcuts import render
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authtoken.models import Token
-
 from .models import Building
-from .serializers import ContactFormSerializer, JoinUsFormSerializer, BuildingSerializer
+from .serializers import ContactFormSerializer, JoinUsFormSerializer, BuildingSerializer,ContractRequestFormSerializer
 from accounts.models import User
 
 
@@ -18,7 +14,12 @@ class ContactFormView(APIView):
             serializer.save()
         return Response({'status': 'success'}, status=status.HTTP_201_CREATED)
 
-
+class ContractRequestFormView(APIView):
+    def post(self, request):
+        serializer = ContractRequestFormSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+        return Response({'status': 'success'}, status=status.HTTP_201_CREATED)
 class JoinUsFormView(APIView):
     def post(self, request):
         serializer = JoinUsFormSerializer(data=request.data)
@@ -28,7 +29,7 @@ class JoinUsFormView(APIView):
 
 
 class AddEstateView(APIView):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     def post(self, request):
         data = request.data.copy()
         data['user'] = request.user.id

@@ -33,49 +33,25 @@ class JoinUsForm(models.Model):
         return self.name
 
 
+class ContractRequestForm(models.Model):
+    name = models.CharField(max_length=100, verbose_name="الاسم")
+    phone = models.CharField(max_length=20, verbose_name="رقم الهاتف")
+    city = models.CharField(max_length=100, verbose_name="المدينة")
+    contract_duration = models.CharField(max_length=100, verbose_name="مدة العقد")
+    contract_type = models.CharField(max_length=100, blank=True, null=True,verbose_name="نوع العقد")
+    region = models.CharField(max_length=100, blank=False)
+    neighborhood = models.CharField(max_length=100, blank=True, null=True)
+
+
+    class Meta:
+        verbose_name = _("العقد الالكتروني")
+        verbose_name_plural = _("العقود الالكترونية")
+
+    def __str__(self):
+        return self.name
+
+
 class Building(models.Model):
-    class BuildingTypes(models.TextChoices):
-        WORKERS_HOUSE = '1', 'Workers_houses'
-        GALLERIES = '2', 'Galleries'
-        FARM = '3', 'Farm'
-
-    class BuildingCategory(models.TextChoices):
-        HOUSING = '1', 'Housing'
-        COMMERCIAL = '2', 'Commercial'
-        AGRICULTURAL = '3', 'Agricultural'
-        INDUSTRIAL = '4', 'Industrial'
-
-    class BuildingUsage(models.TextChoices):
-        SINGLES = '1', 'Singles'
-        FAMILIES = '2', 'Families'
-        OFFICE = '3', 'Office'
-
-    class Offer(models.TextChoices):
-        RENT = '1', 'Singles'
-        SALE = '2', 'Families'
-        AUCTION = '3', 'Auction'
-
-    class Region(models.TextChoices):
-        EAST_REGION = '1', 'المنطقة الشرقية'
-        HAEL = '2', 'حائل'
-        REYAD = '3', 'الرياض'
-        DMAM = '4', 'الدمام'
-        QUSIEM = '5', 'القصيم'
-
-    class City(models.TextChoices):
-        HAFR_AL_BATIN = '1', 'حفر الباطن'
-        HAEL = '2', 'حائل'
-        REYAD = '3', 'الرياض'
-        DMAM = '4', 'الدمام'
-        BAREDA = '5', 'بريدة'
-
-    class Neighborhood(models.TextChoices):
-        ALMOHAMMADIAH = '1', 'المحمدية'
-        ALKAHFYA = '2', 'الكهيفية'
-        RAYAN = '3', 'الريان'
-        NAHDA = '4', 'النهضة'
-        BAREDA = '5', 'بريدة'
-
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     building_type = models.CharField(max_length=100,blank=False)
     building_age = models.FloatField(blank=True, null=True)
