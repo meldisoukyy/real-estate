@@ -96,6 +96,7 @@ class Building(models.Model):
     region = models.CharField(max_length=100,  blank=False)
     city = models.CharField(max_length=100, blank=True, null=True)
     neighborhood = models.CharField(max_length=100,  blank=True, null=True)
+    images = models.ImageField(upload_to='building_images/', blank=True, null=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
 
