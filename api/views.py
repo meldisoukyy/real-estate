@@ -6,7 +6,6 @@ import django_filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Building
 from .serializers import ContactFormSerializer, JoinUsFormSerializer, BuildingSerializer, ContractRequestFormSerializer
-from accounts.models import User
 
 
 class EstateFilter(django_filters.FilterSet):
@@ -59,7 +58,51 @@ class GetAllEstatesView(generics.ListAPIView):
     serializer_class = BuildingSerializer
     filter_backends = (django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['building_type', 'building_age', 'building_area', 'key_place', 'building_category', 'building_usage','offer','price','soom_price','payment_method','rooms','floors','baths','apartments','ground_floor_rooms','upper_floor_rooms','split_air_conditioner','window_air_conditioner','hall','parking','extension','driver_room','elevators','kitchen','seperated_entrance','warehouse','car_entrance','shared_entrance','seperated_2_floors','Central_air_conditioning','gas','sauna','pool','electricity','rooftop','mez_hall','well','pieces','piece_number','design_number','region','city','neighborhood','latitude','longitude']
+    filterset_fields = {'building_type':['exact'],
+                        'building_age':['exact'],
+                        'building_area':['exact'],
+                        'key_place':['exact'],
+                        'building_category':['exact'],
+                        'building_usage':['exact'],
+                        'offer':['exact'],
+                        'price': ['lte', 'gte'],
+                        'soom_price': ['lte', 'gte'],
+                        'payment_method':['exact'],
+                        'rooms':['exact'],
+                        'floors':['exact'],
+                        'baths':['exact'],
+                        'apartments':['exact'],
+                        'ground_floor_rooms':['exact'],
+                        'upper_floor_rooms':['exact'],
+                        'split_air_conditioner':['exact'],
+                        'window_air_conditioner':['exact'],
+                        'hall':['exact'],
+                        'parking':['exact'],
+                        'extension':['exact'],
+                        'driver_room':['exact'],
+                        'elevators':['exact'],
+                        'kitchen':['exact'],
+                        'seperated_entrance':['exact'],
+                        'warehouse':['exact'],
+                        'car_entrance':['exact'],
+                        'shared_entrance':['exact'],
+                        'seperated_2_floors':['exact'],
+                        'Central_air_conditioning':['exact'],
+                        'gas':['exact'],
+                        'sauna':['exact'],
+                        'pool':['exact'],
+                        'electricity':['exact'],
+                        'rooftop':['exact'],
+                        'mez_hall':['exact'],
+                        'well':['exact'],
+                        'pieces':['exact'],
+                        'piece_number':['exact'],
+                        'design_number':['exact'],
+                        'region':['exact'],
+                        'city':['exact'],
+                        'neighborhood':['exact'],
+                        'latitude':['exact'],
+                        'longitude':['exact']}
 
 
 class GetEstateView(APIView):

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ContactForm,JoinUsForm, Building
+from .models import ContactForm,JoinUsForm, Building,BuildingImage
 # Register your models here.
 
 
@@ -15,3 +15,4 @@ class ContactFormAdmin(admin.ModelAdmin):
 admin.site.register(ContactForm)
 admin.site.register(JoinUsForm)
 admin.site.register(Building)
+admin.site.register(BuildingImage)

@@ -96,7 +96,6 @@ class Building(models.Model):
     region = models.CharField(max_length=100,  blank=False)
     city = models.CharField(max_length=100, blank=True, null=True)
     neighborhood = models.CharField(max_length=100,  blank=True, null=True)
-    images = models.ImageField(upload_to='building_images/', blank=True, null=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
 
@@ -109,7 +108,8 @@ class Building(models.Model):
 
 
 class BuildingImage(models.Model):
-    building = models.ForeignKey(Building, on_delete=models.CASCADE)
+    building = models.ForeignKey(Building, on_delete=models.CASCADE,related_name='images')
     image = models.ImageField(upload_to='building_images/')
-
+    def __str__(self):
+        return self.building.building_category
 # class Rate Building
