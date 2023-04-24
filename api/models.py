@@ -56,6 +56,8 @@ class Building(models.Model):
     building_type = models.CharField(max_length=100,blank=False)
     building_age = models.FloatField(blank=True, null=True)
     building_area = models.FloatField(blank=True, null=True)
+    building_number = models.CharField(max_length=100,blank=False)
+    building_notes = models.CharField(max_length=100, blank=False)
     key_place = models.CharField(max_length=256, blank=True, null=True)
     building_category = models.CharField(max_length=100, blank=False)
     building_usage = models.CharField(max_length=100, blank=False)
