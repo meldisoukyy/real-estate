@@ -57,7 +57,7 @@ class Building(models.Model):
     building_age = models.FloatField(blank=True, null=True)
     building_area = models.FloatField(blank=True, null=True)
     building_number = models.CharField(max_length=100,blank=False)
-    building_notes = models.CharField(max_length=100, blank=False)
+    building_notes = models.TextField(blank=False)
     key_place = models.CharField(max_length=256, blank=True, null=True)
     building_category = models.CharField(max_length=100, blank=False)
     building_usage = models.CharField(max_length=100, blank=False)
@@ -98,8 +98,8 @@ class Building(models.Model):
     region = models.CharField(max_length=100,  blank=False)
     city = models.CharField(max_length=100, blank=True, null=True)
     neighborhood = models.CharField(max_length=100,  blank=True, null=True)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
 
     def __str__(self):
         return self.building_category
