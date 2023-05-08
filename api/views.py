@@ -61,6 +61,7 @@ class GetAllEstatesView(generics.ListAPIView):
     filterset_fields = {'building_type':['exact'],
                         'building_age':['exact'],
                         'building_area':['exact'],
+                        'building_number':['exact'],
                         'key_place':['exact'],
                         'building_category':['exact'],
                         'building_usage':['exact'],
