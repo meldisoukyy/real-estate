@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-tx7u=lt-v2l*pi%iwy@*gf^8#n0sy3gt=r^=q9d&3%bod9co(m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['hazem179.pythonanywhere.com', '127.0.0.1', '159.89.190.211']
+ALLOWED_HOSTS = ['hazem179.pythonanywhere.com', '127.0.0.1', 'albdahaqar.com', '164.90.220.106']
 
 # Application definition
 
@@ -78,7 +78,7 @@ ROOT_URLCONF = 'RealEstate.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'templates', os.path.join(BASE_DIR, 'build')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -100,7 +100,7 @@ WSGI_APPLICATION = 'RealEstate.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'realestate',
+        'NAME': 'albdah',
         'USER': 'qematy',
         'PASSWORD': 'qematy_password',
         'HOST': 'localhost',
