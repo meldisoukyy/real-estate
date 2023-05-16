@@ -14,5 +14,5 @@ class User(AbstractUser):
     password = models.CharField(max_length=100)
     role = models.CharField(max_length=100, choices=USER_ROLE)
     USERNAME_FIELD = 'national_id'
-    REQUIRED_FIELDS = ['email', 'phone', 'role']
+    REQUIRED_FIELDS = ['username', 'email', 'phone', 'role']
 
