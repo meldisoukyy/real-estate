@@ -52,14 +52,17 @@ class ContractRequestForm(models.Model):
 
 
 class Building(models.Model):
+    class RequestState(models.TextChoices):
+        PENDING = "1", "معلق"
+        APPROVED = "2", "تمت الموافقة عليه"
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    building_type = models.CharField(max_length=100,blank=False)
+    building_type = models.CharField(max_length=100,blank=False,verbose_name='نوع العقار')
     building_age = models.FloatField(blank=True, null=True)
     building_area = models.FloatField(blank=True, null=True)
     building_number = models.CharField(max_length=100,blank=False, null=True)
     building_notes = models.TextField(blank=False, null=True)
-    key_place = models.CharField(max_length=256, blank=True, null=True)
-    building_category = models.CharField(max_length=100, blank=False)
+    key_place = models.CharField(max_length=256, blank=True, null=True,)
+    building_category = models.CharField(max_length=100, blank=False,verbose_name='تصنيف العقار')
     building_usage = models.CharField(max_length=100, blank=False)
     offer = models.CharField(max_length=100, blank=False)
     price = models.FloatField(blank=True, null=True)
@@ -100,6 +103,7 @@ class Building(models.Model):
     neighborhood = models.CharField(max_length=100,  blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
+    state =models.CharField(max_length=1, choices=RequestState.choices, default=RequestState.PENDING,verbose_name="حالة الطلب")
 
     def __str__(self):
         return self.building_category
@@ -114,4 +118,10 @@ class BuildingImage(models.Model):
     image = models.ImageField(upload_to='building_images/')
     def __str__(self):
         return self.building.building_category
+
+    class Meta:
+        verbose_name = _("صور العقار")
+        verbose_name_plural = _("صور العقار")
+
+
 # class Rate Building

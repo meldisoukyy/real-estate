@@ -54,7 +54,7 @@ class AddEstateView(APIView):
 
 
 class GetAllEstatesView(generics.ListAPIView):
-    queryset = Building.objects.all()
+    queryset = Building.objects.filter(state=2)
     serializer_class = BuildingSerializer
     filter_backends = (django_filters.rest_framework.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     filter_backends = [DjangoFilterBackend]
