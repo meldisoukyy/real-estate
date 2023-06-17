@@ -90,7 +90,7 @@ class Building(models.Model):
     hall = models.IntegerField(blank=True, null=True)
     parking = models.IntegerField(blank=True, null=True)
     extension = models.IntegerField(blank=True, null=True)
-    driver_room = models.IntegerField(blank=True, null=True)
+    driver_room = models.BooleanField(blank=True, null=True)
     elevators = models.IntegerField(blank=True, null=True)
     kitchen = models.BooleanField(default=False, blank=True, null=True)
     seperated_entrance = models.BooleanField(default=False, blank=True, null=True)
