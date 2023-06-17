@@ -24,7 +24,10 @@ class BuildingSerializer(serializers.ModelSerializer):
     images = BuildingImageSerializer(many=True, read_only=True)
     uploaded_images = serializers.ListField(
         child=serializers.ImageField(allow_empty_file=False, use_url=False),
-        write_only=True
+        write_only=True,
+        required=False,
+        allow_null=True,
+        allow_empty=True,
     )
     class Meta:
         model = Building
