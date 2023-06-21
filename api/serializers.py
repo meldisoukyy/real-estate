@@ -35,6 +35,8 @@ class BuildingSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         uploaded_images = validated_data.get("uploaded_images", [])
+        if uploaded_images != []:
+            validated_data.pop("uploaded_images")
         building = Building.objects.create(**validated_data)
         for image in uploaded_images:
             BuildingImage.objects.create(building=building, image=image)
