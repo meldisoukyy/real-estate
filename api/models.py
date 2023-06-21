@@ -134,7 +134,7 @@ class Building(models.Model):
     furnished = models.BooleanField(default=False, blank=True, null=True)
 
     def __str__(self):
-        return self.building_category
+        return self.building_category or ""
 
     class Meta:
         verbose_name = _("العقارات")
